@@ -1,1 +1,4 @@
-Go to https://cattn.github.io for everything. If you would like more info contact me via Discord @ Catt#5172
+# cubefield
+Cubefield clone using Three.JS
+
+Live at [christopher-hayes.github.io/cubefield](https://christopher-hayes.github.io/cubefield)
