@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8" />
+  <title>Gamedev Canvas Workshop</title>
+  <style>
+    * {
+      padding: 0;
+      margin: 0;
+    }
+    
+    canvas {
+      background: #eee;
+      display: block;
+      margin: 0 auto;
+    }
+  </style>
+</head>
+
+<body>
+  <canvas id="myCanvas" width="500" height="350"></canvas>
+  <script>
+    var canvas = document.getElementById('myCanvas');
+    var context = canvas.getContext('2d');
+
+    var speed = 10;
+    var gameSpeed = 1;
+
+    var me = {
+      x: canvas.width / 2 - 5,
+      y: canvas.height / 2 - 5,
+      width: 10,
+      height: 10
+    }
+
+    var bullets = [];
+    var wallLength = 200;
+    var walls = {
+      'left': {
+        x: 10,
+        y: canvas.height / 2 - wallLength / 2,
+        width: 10,
+        height: wallLength,
+        'pos': 'left'
+      },
+      'right': {
+        x: canvas.width - 20,
+        y: canvas.height / 2 - wallLength / 2,
+        width: 10,
+        height: wallLength,
+        'pos': 'right'
+      },
+      'top': {
+        x: canvas.width / 2 - wallLength,
+        y: 10,
+        width: wallLength * 2,
+        height: 10,
+        'pos': 'top'
+      },
+      'bottom': {
+        x: canvas.width / 2 - wallLength,
+        y: canvas.height - 20,
+        width: wallLength * 2,
+        height: 10,
+        'pos': 'bottom'
+      },
+    };
+
+    var gravity = 0.2;
+    var bounce = 4;
+    var distance = 70;
+    var dir = '';
+
+    document.onkeyup = function (e) {
+      if (!e) {
+        e = window.e;
+      }
+      var code = e.keyCode;
+      if (e.charCode && codee == 0) {
+        code = e.charCode;
+      }
+
+      switch (code) {
+        case 37://left
+          if (dir != 'left')
+            dir = 'left';
+          bullets.push({
+            x: me.x,
+            y: me.y,
+            width: 10,
+            height: 10,
+            dir: dir
+          });
+          break;
+        case 40:
+          if (dir != 'down')
+            dir = 'down';
+          bullets.push({
+            x: me.x,
+            y: me.y,
+            width: 10,
+            height: 10,
+            dir: dir
+          });
+          break;
+        case 39:
+          if (dir != 'right')
+            dir = 'right';
+          bullets.push({
+            x: me.x,
+            y: me.y,
+            width: 10,
+            height: 10,
+            dir: dir
+          });
+          break;
+        case 38:
+          if (dir != 'up')
+            dir = 'up';
+          bullets.push({
+            x: me.x,
+            y: me.y,
+            width: 10,
+            height: 10,
+            dir: dir
+          });
+          break;
+      }
+
+
+
+    }
+
+    var wallSpeed = 0.2;
+    var walletBackward = 20;
+    var score = 0;
+    function makeWalls() {
+      for (var index in walls) {
+        var wall = walls[index];
+        context.beginPath();
+        context.rect(wall.x, wall.y, wall.width, wall.height);
+        context.fillStyle = "blue";
+        context.fill();
+        context.closePath();
+        if (wall.pos == 'left') {
+          wall.x += wallSpeed;
+          if ((wall.x + wall.width) >= me.x) {
+            loose();
+          }
+        }
+
+        if (wall.pos == 'right') {
+          wall.x -= wallSpeed;
+          if ((wall.x + wall.width) <= me.x) {
+            loose();
+          }
+        }
+
+        if (wall.pos == 'top') {
+          wall.y += wallSpeed;
+          if ((wall.y + wall.height) >= me.y) {
+            loose();
+          }
+        }
+
+        if (wall.pos == 'bottom') {
+          wall.y -= wallSpeed;
+          if ((wall.y + wall.height) <= me.y) {
+            loose();
+          }
+        }
+
+        // console.log(walls[wall]);
+      }
+
+
+    }
+
+
+
+
+    function loose() {
+      alert('You fucked! score : ' + score);
+    }
+    var collid = false;
+    function makeBullet() {
+      for (bullet of bullets) {
+        context.beginPath();
+        context.rect(bullet.x, bullet.y, bullet.width, bullet.height);
+        context.fillStyle = "red";
+        context.fill();
+        context.closePath();
+        if (bullet.dir == 'left') {
+          bullet.x -= 10;
+        }
+        if (bullet.dir == 'right') {
+          bullet.x += 10;
+        }
+        if (bullet.dir == 'up') {
+          bullet.y -= 10;
+        }
+        if (bullet.dir == 'down') {
+          bullet.y += 10;
+        }
+
+
+        if (bullet.x >= canvas.width || bullet.x <= 0 || bullet.y >= canvas.height || bullet.y <= 0) {
+          bullets.splice(bullets.indexOf(bullet), 1);
+        }
+
+        if (bullet.dir == 'right') {
+          if (bullet.x >= walls['right'].x) {
+            walls['right'].x = walls['right'].x + walletBackward;
+            collid = true;
+          }
+
+        }
+
+        if (bullet.dir == 'up') {
+          if (bullet.y <= walls['top'].y) {
+            walls['top'].y = walls['top'].y - walletBackward;
+            collid = true;
+          }
+
+        }
+
+
+        if (bullet.dir == 'down') {
+          if (bullet.y >= walls['bottom'].y) {
+            walls['bottom'].y = walls['bottom'].y + walletBackward;
+            collid = true;
+          }
+
+        }
+
+
+        if (bullet.dir == 'left') {
+          if (bullet.x <= walls['left'].x) {
+            walls['left'].x = walls['left'].x - walletBackward;
+            collid = true;
+          }
+
+        }
+
+        if (collid) {
+          bullets.splice(bullets.indexOf(bullet), 1);
+          collid = false;
+          score++;
+        }
+
+
+
+      }
+    }
+
+    function removeBullet(index) {
+      bullets.splice(index, 1);
+    }
+
+    function makeMe() {
+      context.beginPath();
+      context.rect(me.x, me.y, me.width, me.height);
+      context.fillStyle = "green";
+      context.fill();
+      context.closePath();
+
+    }
+
+
+    function rnd(min, max) {
+      var r = Math.round(Math.random() * (max - min) + min);
+      return (r - r % speed);
+    }
+    var wallPoses = ['left', 'right', 'top', 'bottom'];
+    var frame = 0;
+    (function loop() {
+      requestAnimationFrame(function () {
+        context.clearRect(0, 0, canvas.width, canvas.height);
+        makeMe();
+        makeBullet();
+        makeWalls();
+        if (score % 50 == 0) {
+          walletBackward -= 1;
+          wallSpeed += 0.1;
+          score += 1;
+          console.log(score);
+          console.log(wallSpeed);
+          console.log(walletBackward);
+
+        }
+
+        if (frame % gameSpeed == 0) {
+          frame++;
+        }
+        loop();
+      })
+    })();
+  </script>
+</body>
+
+</html>

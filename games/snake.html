@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <title>Gamedev Canvas Workshop</title>
+  <style>
+  * { padding: 0; margin: 0; }
+  canvas { background: #eee; display: block; margin: 0 auto; }
+  </style>
+</head>
+<body>
+  <canvas id="myCanvas" width="500" height="350"></canvas>
+  <script>
+  var canvas = document.getElementById('myCanvas');
+  var context = canvas.getContext('2d');
+
+  var speed = 10;
+  var snakes = [];
+  var snakeLength = 10;
+  gameSpeed = 10;
+  var food = {
+    x : rnd(10, canvas.width),
+    y : rnd(10, canvas.height),
+    width : 10,
+    height : 10
+  }
+
+  var dir = 'left';
+
+  document.onkeydown = function(e){
+    if(!e){
+      e = window.e;
+    }
+    var code = e.keyCode;
+    if(e.charCode && codee ==0){
+      code = e.charCode;
+    }
+    switch (code) {
+      case 37://left
+        if(dir != 'right')
+          dir = 'left';
+        break;
+      case 38:
+        if(dir != 'down')
+        dir = 'up';
+        break;
+      case 39:
+        if(dir != 'left')
+        dir = 'right';
+        break;
+      case 40:
+        if(dir != 'up')
+        dir = 'down';
+        break;
+    }
+  }
+  function initSnake(x,y){
+    if(!x) x = 230;
+    if(!y) y = 150;
+    for (var i = 0; i < snakeLength; i++) {
+      snakes.push({
+        x     : x - (speed *i),
+        y     : y,
+        dir   : 'right',
+        width : 10,
+        height : 10,
+        color : 'blue'
+      });
+    }
+  }
+  initSnake();
+  var head = [];
+  var poses = [];
+  speed = 10;
+  dir = 'right';
+  function makeSnake() {
+    head = snakes[0];
+    head.dir = dir;
+    for (let [i, snake] of snakes.reverse().entries()) {
+      var snakePrev = snakes[i + 1] || snakes[snakes.length - 1];
+      if(snake.dir == 'right'){
+        snake.x += speed;
+      }
+      if(snake.dir == 'down'){
+        snake.y += speed;
+      }
+      if(snake.dir == 'left'){
+        snake.x -= speed;
+      }
+      if(snake.dir == 'up'){
+        snake.y -= speed;
+      }
+      if(snake.x > canvas.width){
+        snake.x = 0;
+      }
+      if(snake.x < 0){
+        snake.x = canvas.width;
+      }
+      if(snake.y > canvas.height){
+        snake.y = 0;
+      }
+      if(snake.y < 0 ){
+        snake.y = canvas.height;
+      }
+
+      snake.dir = snakePrev.dir;
+      context.beginPath();
+      // context.arc(snake.x, snake.y,5 ,0,Math.PI * 2 );
+      context.rect(snake.x , snake.y , snake.width , snake.height);
+      context.fillStyle = snake.color;
+      context.fill();
+      context.closePath();
+
+      if(snake != head && isCollide(snake, snakes[snakes.length - 1])){
+        alert("you fucked!!!");
+        gameSpeed = -1;
+      }
+
+      if(isCollide(head,food)){
+        food.x = rnd(10, canvas.width  - 10);
+        food.y = rnd(10, canvas.height - 10);
+        gameSpeed -= 1 ;
+        if(gameSpeed == 0){
+          gameSpeed = 1;
+        }
+        snakes.push({
+          x     : snake.x,//- (11 *i),
+          y     : snake.y,
+          dir   : snake.dir,
+          width : speed,
+          height : speed,
+          color : "blue"
+        });
+      }
+    }
+    snakes.reverse();
+  }
+
+function isCollide(a,b) {
+
+    return (
+      (b.x == a.x) &&
+      (b.y == a.y)
+    );
+}
+
+
+function rnd(min, max) {
+  var r = Math.round(Math.random() * (max - min) + min);
+  return (r - r % speed);
+}
+
+function makeFood() {
+  context.beginPath();
+  context.rect(food.x,food.y,food.width,food.height);
+  context.fillStyle = "green";
+  context.fill();
+  context.closePath();
+}
+var frame = 0;
+(function loop(){
+  requestAnimationFrame(function () {
+    if(frame % gameSpeed == 0 ){
+      context.clearRect(0 , 0, canvas.width, canvas.height);
+      head = snakes[0];
+      makeSnake();
+      makeFood();
+    }
+    frame++;
+    loop();
+  })
+})();
+</script>
+</body>
+</html>
