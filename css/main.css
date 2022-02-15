@@ -1,28 +1,9 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@600&display=swap');
-
-* {
-	padding: 0;
-	margin: 0;
-}
 body {
-	background: rgb(7, 7, 8);
-	background-image: linear-gradient(
-		to bottom right,
-		rgb(87, 87, 90) 0%,
-		rgb(12, 12, 12) 100%,
-		rgba(21, 103, 120, 1) 100%
-	);
-	background-color: #283faa;
-	height: 100vh;
-	display: grid;
-	place-items: left;
-	color: white;
+    margin: 60px auto;
+    width: 70%;
+    background-color: #2C2F33;
+    color: #FFFFFF;
 }
-
-img {
-	border-radius: 50%;
-}
-
 nav ul, footer ul {
     font-family:'Helvetica', 'Arial', 'Sans-Serif';
     padding: 0px;
@@ -48,12 +29,10 @@ footer {
     border-top: 1px solid #d5d5d5;
     font-size: .8em;
 }
-
 ul.posts { 
     margin: 20px auto 40px; 
     font-size: 1.5em;
 }
-
 ul.posts li {
     list-style: none;
 }
