@@ -116,7 +116,7 @@
 
       if(isCollideB(bird, p.bottom) || isCollideT(bird, p.top) || bird.y +10 >= canvas.height){
           alert('Your score : '+score);
-          window.location.reload();
+          window.location.href=window.location.href;
       }
 
       if(score % 10 == 0){
