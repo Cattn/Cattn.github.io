@@ -6,6 +6,7 @@
   <div>
     <button class="refresh" onClick="window.location.reload();">Refresh Page (May Fix any issues)</button>
   </div>
+  <div id="errors" style="display:none;"></div>
   <style>
    .refresh {
         color: red;
@@ -115,7 +116,8 @@
       }
 
       if(isCollideB(bird, p.bottom) || isCollideT(bird, p.top) || bird.y +10 >= canvas.height){
-          alert('Your score : '+score);
+          
+        
           window.location.href=window.location.href;
       }
 
