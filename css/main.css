@@ -1,119 +1,38 @@
-/*
+html {
+    overflow: hidden
+}
 body {
-    margin: 60px auto;
-    width: 70%;
-    background-color: #2C2F33;
-    color: #FFFFFF;
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, 
+      'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell,
+      'Open Sans', 'Helvetica Neue', sans-serif;
 }
-nav ul, footer ul {
-    font-family:'Helvetica', 'Arial', 'Sans-Serif';
-    padding: 0px;
-    list-style: none;
-    font-weight: bold;
+#particles-js {
+    background: #202020;
+    height: 100vh;
 }
-nav ul li, footer ul li {
-    display: inline;
-    margin-right: 20px;
-}
-a {
-    text-decoration: none;
-    color: #7289DA;
-}
-a:hover {
-    text-decoration: underline;
-}
-h1 {
-    font-size: 3em;
-    font-family:'Helvetica', 'Arial', 'Sans-Serif';
-}
-footer {
-    border-top: 1px solid #d5d5d5;
-    font-size: .8em;
-}
-ul.posts { 
-    margin: 20px auto 40px; 
-    font-size: 1.5em;
-}
-ul.posts li {
-    list-style: none;
-}
-*/
-
-
-
-
-
-@keyframes move_wave {
-    0% {
-        transform: translateX(0) translateZ(0) scaleY(1)
-    }
-    50% {
-        transform: translateX(-25%) translateZ(0) scaleY(0.55)
-    }
-    100% {
-        transform: translateX(-50%) translateZ(0) scaleY(1)
-    }
-}
-.waveWrapper {
-    overflow: hidden;
+.within1 {
+    color: white;
     position: absolute;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    top: 0;
-    margin: auto;
-}
-.waveWrapperInner {
-    position: absolute;
+    text-align: center;
     width: 100%;
-    overflow: hidden;
-    height: 100%;
-    bottom: -1px;
-    background-image: linear-gradient(to top, #86377b 20%, #27273c 80%);
 }
-.bgTop {
-    z-index: 15;
-    opacity: 0.5;
+.within1 h1 {
+    color: limegreen;
+    font-size: 70px;
 }
-.bgMiddle {
-    z-index: 10;
-    opacity: 0.75;
+.within1 h2 {
+    color: #3c6ea7;
+    font-size: 40px;
 }
-.bgBottom {
-    z-index: 5;
+.within1 h3 {
+    color: wheat;
+    font-size: 20px;
+    margin-top: -30px;
 }
-.wave {
-    position: absolute;
-    left: 0;
-    width: 200%;
-    height: 100%;
-    background-repeat: repeat no-repeat;
-    background-position: 0 bottom;
-    transform-origin: center bottom;
+.margin-t {
+    margin-top: -4px;
 }
-.waveTop {
-    background-size: 50% 100px;
-}
-.waveAnimation .waveTop {
-  animation: move-wave 3s;
-   -webkit-animation: move-wave 3s;
-   -webkit-animation-delay: 1s;
-   animation-delay: 1s;
-}
-.waveMiddle {
-    background-size: 50% 120px;
-}
-.waveAnimation .waveMiddle {
-    animation: move_wave 10s linear infinite;
-}
-.waveBottom {
-    background-size: 50% 100px;
-}
-.waveAnimation .waveBottom {
-    animation: move_wave 15s linear infinite;
-}
-
-body {
-    color: black;
-    font-size: 12px;
+.margin-t1 {
+    margin-top: -20px;
 }
