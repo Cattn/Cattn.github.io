@@ -1,5 +1,6 @@
 html {
-    overflow: hidden
+    overflow: hidden;
+    background-color: #202020;
 }
 body {
     margin: 0;
@@ -7,13 +8,8 @@ body {
       'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell,
       'Open Sans', 'Helvetica Neue', sans-serif;
 }
-#particles-js {
-    background: #202020;
-    height: 100vh;
-}
 .within1 {
     color: white;
-    position: absolute;
     text-align: center;
     width: 100%;
 }
@@ -35,4 +31,9 @@ body {
 }
 .margin-t1 {
     margin-top: -20px;
+}
+.within2 {
+    padding: 10px;
+    color: white;
+    text-align: center;
 }
