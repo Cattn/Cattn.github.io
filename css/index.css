@@ -1,0 +1,168 @@
+@import url('https://fonts.googleapis.com/css2?family=Baloo+Da&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Blinker:wght@700&display=swap');
+
+* {
+    scroll-behavior: smooth;
+}
+html {
+    background-color: #344688;
+}
+.nav-bar {
+    width: 100vw;
+    height: 10vh;
+    opacity: 0.78;
+    text-align: center;
+    align-items: center;
+    position: fixed;
+  width: 100%;
+  top: 0;
+  left: 0;
+  z-index: 100;
+    background-color: #344688;
+}
+
+.nav-text {
+    font-family: 'Baloo Da';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 3.4vw;
+
+    color: #FFFFFF;
+
+    opacity: 0.65;
+    display: inline-block;
+    margin-right: 8vw;
+    text-decoration: none;
+}
+
+.nav-text:hover {
+    opacity: 1;
+    transform: scale(1.1);
+    transition: 0.3s;
+    text-decoration: underline;
+}
+
+.nav-right {
+    margin-left: 8vw
+}
+
+
+.example-post {
+  position: relative;
+  padding: 0;
+  color: #7f8b90;
+}
+.example-post a {
+  color: #607D8B;
+}
+.example-post:before {
+    content: "";
+    display: block;
+    background: linear-gradient(to right top, #CDDC39 0%, #03A9F4 50%, #344688 50%);
+    height: calc(100% - 100vh + 6px);
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+.example-post:after {
+    content: "";
+    display: block;
+    background-color: #344688;
+    height: calc(100vh - 10px);
+    width: 100%;
+    position: -webkit-sticky;
+    position: sticky;
+    bottom: 0;
+    left: 0;
+    
+}
+
+.content {
+    position: relative;
+    z-index: 9;
+}
+
+.name-wrap {
+    text-align: center;
+    margin-top: 40vh;
+    height: 50vh;
+}
+.name {
+    font-size: 8vw;
+    font-family: 'Baloo Da';
+    line-height: 10vh;
+    position: sticky;
+    top: 15vh;
+    margin-top: 40vh;
+    text-align: center;
+    color: #FFFFFF;
+}
+
+.subname {
+    font-size: 3.5vw;
+    font-family: 'Baloo Da';
+    text-align: center;
+    color: #FFFFFF;
+    margin-left: 49vw;
+    line-height: 10vh;
+    margin-top: 0;
+    padding: 0;
+    display:inline-block;
+}
+
+.subtext {
+    font-family: 'Blinker', sans-serif;
+    text-align: center;
+    color: #000000;
+    line-height: 1vh;
+    margin-top: 0;
+    padding: 0;
+    display:inline-block;
+    text-align: center;
+}
+
+h1{
+    padding: 0%;
+    margin: 0%;
+}
+
+::-webkit-scrollbar {
+	width: 9px;
+	border-radius: 10px;;
+  }
+  
+  ::-webkit-scrollbar-thumb {
+	border-radius: 10px;
+	-webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, .3);
+	background-color: #555;
+  }
+
+.space {
+    height: 50vh;
+}
+
+.about {
+    width: 80vw;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    height: 46vh;
+    background: rgba(79, 33, 115, 0.35);
+border-radius: 5vw;
+margin: 0;
+margin-left: 10vw;
+}
+
+.about-text {
+    font-family: 'Baloo Da';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 2vw;
+
+    color: #FFFFFF;
+    display: inline-block;
+    margin-left: 8vw;
+    margin-right: 8vw;
+    text-decoration: none;
+}
